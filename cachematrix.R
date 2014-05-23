@@ -3,12 +3,17 @@
 
 ## Creates a special "matrix" object that can cache its inverse
 
-makeCacheMatrix <- function(x = matrix()) {  ##create a function that creates empty matrix "X" to invert as input
-    m <- NULL  ## set m = NULL within makeCacheMatrix, 
-    set <- function(y) {
-      x <<- y  ## assign x the value of the function argument (y) within the "set" function
+makeCacheMatrix <- function(x = matrix()) {  ##create a function that creates empty matrix named "x" to invert as input
+ 
+  m <- NULL  ## set the cache named m to NULL within makeCacheMatrix 
+    
+    set <- function(y) {  ## create the function "set" that takes argument "y"
       
-      m <<- NULL  ## assign "m" NULL inside the "set" function so don't overwrite in parent makeCacheMatrix environment
+      x <<- y  ## assign the empty matrix "x" the value of the function argument (y) & use superoperator <<-
+                ## to scope x throughout all of makeCacheMatrix, not just within function "set"
+      
+      m <<- NULL  ## assign the cache "m" NULL & scope throughout makeCacheMatrix using <<- to override previously
+                  ## assigned cache "m" values within makeCacheMatrix
     
     }
     
